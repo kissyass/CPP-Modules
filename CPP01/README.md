@@ -40,6 +40,7 @@ More information on <a href = "https://www.geeksforgeeks.org/new-and-delete-oper
 - Avoiding a copy of large structures
 - In For Each Loop to modify all objects
 - For Each Loop to avoid the copy of objects
+
 More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/">reference</a>
 ## <a id="Filestream">Filestream</a>
 - To read and write from a file we are using the standard C++ library called fstream. Let us see the data types define in <b>fstream</b> library is:
@@ -90,6 +91,7 @@ Both references and pointers can be used to change the local variables of one fu
 - Once a reference is created, it cannot be later made to reference another object; it cannot be reset. This is often done with pointers. 
 - References cannot be NULL. Pointers are often made NULL to indicate that they are not pointing to any valid thing. 
 - A reference must be initialized when declared. There is no such restriction with pointers.
+
 More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/">reference vs pointer</a>
 
 
