@@ -1,10 +1,10 @@
 
 # CPP Module 00
 
-1. [New and delete](#new_delete)
-2. [References](#References)
-3. [Filestream](#Filestream)
-4. [References vs Pointers](#References_vs_Pointers)
+1. [New and delete](#new-and-delete)
+2. [References](#references)
+3. [Filestream](#filestream)
+4. [References vs Pointers](#references-vs-pointers)
 
 
 ## <a id="new_delete">New and delete</a>
