@@ -1,5 +1,5 @@
 
-# CPP Module 00
+# CPP Module 01
 
 1. [New and delete](#new-and-delete)
 2. [References](#references)
@@ -40,6 +40,11 @@ More information on <a href = "https://www.geeksforgeeks.org/new-and-delete-oper
 - Avoiding a copy of large structures
 - In For Each Loop to modify all objects
 - For Each Loop to avoid the copy of objects
+
+#### There are 3 ways to pass C++ arguments to a function:
+- call-by-value
+- call-by-reference with a pointer argument
+- call-by-reference with a reference argument
 
 More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/">reference</a>
 ## <a id="Filestream">Filestream</a>
@@ -91,6 +96,18 @@ Both references and pointers can be used to change the local variables of one fu
 - Once a reference is created, it cannot be later made to reference another object; it cannot be reset. This is often done with pointers. 
 - References cannot be NULL. Pointers are often made NULL to indicate that they are not pointing to any valid thing. 
 - A reference must be initialized when declared. There is no such restriction with pointers.
+
+|Parameters	|Pass by Pointer |Pass by Reference|
+|----|-----|-----|
+|Passing Arguments |We pass the address of arguments in the function call.	|We pass the arguments in the function call.|
+|Accessing Values|The value of the arguments is accessed via the dereferencing operator *	|The reference name can be used to implicitly reference a value.|
+|Reassignment|Passed parameters can be moved/reassigned to a different memory location.	|Parameters can’t be moved/reassigned to another memory address.|
+|Allowed Values|Pointers can contain a NULL value, so a passed argument may point to a NULL or even a garbage value.|References cannot contain a NULL value, so it is guaranteed to have some value.|
+
+#### Which is preferred, Passing by Pointer Vs Passing by Reference in C++? 
+- References are usually preferred over pointers whenever we don’t need “reseating”.
+- If we want to use NULL in our function arguments, prefer pointers.
+- Overall, <b>Use references when you can, and pointers when you have to</b>
 
 More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/">reference vs pointer</a>
 
