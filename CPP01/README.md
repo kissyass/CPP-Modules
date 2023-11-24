@@ -12,16 +12,16 @@
 - Dynamic memory allocation in C/C++ refers to performing memory allocation manually by a programmer. 
 - Dynamically allocated memory is allocated on <b>Heap</b>, and non-static and local variables get memory allocated on <b>Stack</b>
 - To allocate heap memory in C++, use the keyword new followed by the constructor of what you want to allocate.
-#### How is it different from memory allocated to normal variables? 
+### How is it different from memory allocated to normal variables? 
 - For normal variables like “int a”, “char str[10]”, etc, memory is automatically allocated and deallocated. For dynamically allocated memory like “int *p = new int[10]”, it is the programmer’s responsibility to deallocate memory when no longer needed. If the programmer doesn’t deallocate memory, it causes a memory leak (memory is not deallocated until the program terminates). 
-#### New operator 
+### New operator 
 - The new operator denotes a request for memory allocation on the Free Store. If sufficient memory is available, a new operator initializes the memory and returns the address of the newly allocated and initialized memory to the pointer variable. 
 - Syntax:
 ```
     pointer-variable = new data-type;
     int *p = new int; 
 ```
-#### Delete operator
+### Delete operator
 - Since it is the programmer’s responsibility to deallocate dynamically allocated memory, programmers are provided delete operator in C++ language. 
 - Syntax:
 ```
@@ -36,13 +36,13 @@ More information on <a href = "https://www.geeksforgeeks.org/new-and-delete-oper
 ```
     data_type &ref = variable;
 ```
-#### Applications of Reference in C++
+### Applications of Reference in C++
 - Modify the passed parameters in a function (e.g. for swap function)
 - Avoiding a copy of large structures
 - In For Each Loop to modify all objects
 - For Each Loop to avoid the copy of objects
 
-#### There are 3 ways to pass C++ arguments to a function:
+### There are 3 ways to pass C++ arguments to a function:
 - call-by-value
 - call-by-reference with a pointer argument
 - call-by-reference with a reference argument
@@ -57,7 +57,7 @@ More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/"
 |ifstream|It is used to read information from files.|
 |ofstream|It is used to create files and write information to the files.|
 
-#### Example
+### Example
 
 ```
 #include <iostream>  
@@ -105,7 +105,7 @@ Both references and pointers can be used to change the local variables of one fu
 |Reassignment|Passed parameters can be moved/reassigned to a different memory location.	|Parameters can’t be moved/reassigned to another memory address.|
 |Allowed Values|Pointers can contain a NULL value, so a passed argument may point to a NULL or even a garbage value.|References cannot contain a NULL value, so it is guaranteed to have some value.|
 
-#### Which is preferred, Passing by Pointer Vs Passing by Reference in C++? 
+### Which is preferred, Passing by Pointer Vs Passing by Reference in C++? 
 - References are usually preferred over pointers whenever we don’t need “reseating”.
 - If we want to use NULL in our function arguments, prefer pointers.
 - Overall, <b>Use references when you can, and pointers when you have to</b>
@@ -114,7 +114,7 @@ More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/"
 
 ## <a id="Useful-functions">Useful functions</a>
 
-#### String find
+### String find
 - String find is used to find the first occurrence of a sub-string in the specified string being called upon. It returns the index of the first occurrence of the substring in the string from the given starting position. The default value of starting position is 0.
 - <b>Syntax:</b>
 ```
@@ -135,7 +135,7 @@ size_t find (const char* s, size_t pos = 0);     // for C-Style Strings
 
 More inforamtion on <a href="https://www.geeksforgeeks.org/string-find-in-cpp/">string find</a>.
 
-#### Substr
+### Substr
 - The substring function is used for handling string operations like strcat(), append(), etc. It generates a new string with its value initialized to a copy of a sub-string of this object. In C++, the header file which is required for  std::substr(), string functions is <string>. 
 - The substring function takes two values pos and len as an argument and returns a newly constructed string object with its value initialized to a copy of a sub-string of this object. Copying of string starts from pos and is done till pos+len means [pos, pos+len).
 - <b>Syntax:</b> 
