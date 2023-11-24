@@ -5,9 +5,10 @@
 2. [References](#references)
 3. [Filestream](#filestream)
 4. [References vs Pointers](#references-vs-pointers)
+5. [Useful functions](#Useful-functions)
 
 
-## <a id="new_delete">New and delete</a>
+## <a id="new-and-delete">New and delete</a>
 - Dynamic memory allocation in C/C++ refers to performing memory allocation manually by a programmer. 
 - Dynamically allocated memory is allocated on <b>Heap</b>, and non-static and local variables get memory allocated on <b>Stack</b>
 - To allocate heap memory in C++, use the keyword new followed by the constructor of what you want to allocate.
@@ -79,14 +80,14 @@ int main ()
     std::cout << "Reading from a text file:" << std::endl;   
     while (getline (is,line))  
     {  
-    std::cout << line << std::endl;  
+        std::cout << line << std::endl;  
     }      
     is.close();  
     return 0;   
 }  
 ```
 More information on <a href = "https://www.javatpoint.com/cpp-files-and-streams">file streams</a>
-## <a id="References_vs_Pointers">References vs Pointers</a>
+## <a id="References-vs-Pointers">References vs Pointers</a>
 Both references and pointers can be used to change the local variables of one function inside another function. Both of them can also be used to save copying of big objects when passed as arguments to functions or returned from functions, to get efficiency gain. Despite the above similarities, there are the following differences between references and pointers.
 - A pointer can be declared as void but a reference can never be void For example
 - The pointer variable has n-levels/multiple levels of indirection i.e. single-pointer, double-pointer, triple-pointer. Whereas, the reference variable has only one/single level of indirection. The following code reveals the mentioned points:  
@@ -111,5 +112,38 @@ Both references and pointers can be used to change the local variables of one fu
 
 More information on <a href = "https://www.geeksforgeeks.org/references-in-cpp/">reference vs pointer</a>
 
+## <a id="Useful-functions">Useful functions</a>
 
+#### String find
+- String find is used to find the first occurrence of a sub-string in the specified string being called upon. It returns the index of the first occurrence of the substring in the string from the given starting position. The default value of starting position is 0.
+- <b>Syntax:</b>
+```
+size_t find (const string& str, size_t pos = 0); // for C++ Style Strings
+         or
+size_t find (const char* s, size_t pos = 0);     // for C-Style Strings
+```
+- <b>Parameters:</b>
+- str: The sub-string to be searched.
+- s: The sub-string to be searched, given as a C-style string.
+- pos: The initial position from where the string search is to begin.
+- <b>Return Value:</b>
+- The function returns the index of the first occurrence of the sub-string.
+- If the sub-string is not found it returns string::npos(string::pos is a static member with its value as the highest possible for the size_t data type).
+- <b>Complexity analysis:</b>
+- Time Complexity: O(N*M), where N is the size of the string(str) and M is the size of the substring to be searched.
+- Auxiliary Space: O(1) 
 
+More inforamtion on <a href="https://www.geeksforgeeks.org/string-find-in-cpp/">string find</a>.
+
+#### Substr
+- The substring function is used for handling string operations like strcat(), append(), etc. It generates a new string with its value initialized to a copy of a sub-string of this object. In C++, the header file which is required for  std::substr(), string functions is <string>. 
+- The substring function takes two values pos and len as an argument and returns a newly constructed string object with its value initialized to a copy of a sub-string of this object. Copying of string starts from pos and is done till pos+len means [pos, pos+len).
+- <b>Syntax:</b> 
+- string substr (size_t pos, size_t len) const;
+- <b>Parameters:</b>
+- pos: Position of the first character to be copied.
+- len: Length of the sub-string.
+- size_t: It is an unsigned integral type.
+- <b>Return Value:</b> It returns a string object.
+
+More inforamtion on <a href="https://www.geeksforgeeks.org/substring-in-cpp/">sub-strings</a>.
