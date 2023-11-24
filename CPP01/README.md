@@ -6,7 +6,7 @@
 3. [Filestream](#filestream)
 4. [References vs Pointers](#references-vs-pointers)
 5. [Useful functions](#Useful-functions)
-
+6. [Pointers to member functions](#Pointers-to-member-functions)
 
 ## <a id="new-and-delete">New and delete</a>
 - Dynamic memory allocation in C/C++ refers to performing memory allocation manually by a programmer. 
@@ -137,7 +137,7 @@ More inforamtion on <a href="https://www.geeksforgeeks.org/string-find-in-cpp/">
 
 ### Substr
 - The substring function is used for handling string operations like strcat(), append(), etc. It generates a new string with its value initialized to a copy of a sub-string of this object. In C++, the header file which is required for  std::substr(), string functions is <string>. 
-- The substring function takes two values pos and len as an argument and returns a newly constructed string object with its value initialized to a copy of a sub-string of this object. Copying of string starts from pos and is done till pos+len means [pos, pos+len).
+- The substring function takes two values pos and len as an argument and returns a newly constructed string object with its value initialized to a copy of a sub-string of this object. Copying of string starts from pos and is done till pos+len means (pos, pos+len).
 - <b>Syntax:</b> 
 - string substr (size_t pos, size_t len) const;
 - <b>Parameters:</b>
@@ -147,3 +147,16 @@ More inforamtion on <a href="https://www.geeksforgeeks.org/string-find-in-cpp/">
 - <b>Return Value:</b> It returns a string object.
 
 More inforamtion on <a href="https://www.geeksforgeeks.org/substring-in-cpp/">sub-strings</a>.
+
+### c_str()
+- The c_str() function in C++ converts a string to an array of characters and terminates this array with a null character at the end.
+- The function does not accept any parameters. It returns a pointer to this array of characters.
+- The c_str() function in C++ converts a given string to an array of characters.
+
+More inforamtion on <a href="https://www.scaler.com/topics/cpp-string-c-str-function/">c_str()</a>.
+
+## <a id="Pointers-to-member-functions">Pointers to member functions</a>
+
+- You can compare pointers to member functions, assign values to them, and use them to call member functions. Note that a member function does not have the same type as a nonmember function that has the same number and type of arguments and the same return type.
+
+More information on <a href="https://www.ibm.com/docs/en/i/7.4?topic=only-pointers-members-c">pointers to members</a> and <a href="https://isocpp.org/wiki/faq/pointers-to-members">FAQ</a>.
