@@ -106,19 +106,19 @@ Integer::~Integer(void)
 	std::cout<<"Destructor called\n";
 }
 
-Integer:int getValue(void) const
+int Integer: getValue(void) const
 {
 	return this->_n;
 }
 
-Integer::Integer & operator=(Integer const & rhs)
+Integer & Integer::operator=(Integer const & rhs)
 {
 	this->_n = rhs.getValue();
 
 	return *this;
 }
 
-Integer::Integer operatir+(Integer const & rhs) const
+Integer Integer::operatir+(Integer const & rhs) const
 {
 	return Integer(this->_n + rhs.getValue());
 }
