@@ -68,6 +68,71 @@ int main()
 
 More information on <a href="https://www.geeksforgeeks.org/operator-overloading-cpp/">operator overloading</a>.
 
+
+| integer.h
+```
+#include <iostream>
+
+class Integer
+{
+	private:
+		int _n;
+	public:
+		Integer(int const n);
+		~Integer(void);
+		int getValue(void) const;
+		Integer & operator=(Integer const & rhs);	// 'Integer&' to update (change) and return only
+													// the copy of the current instance
+													// as arguments also passed hidden current
+													// instance 'this'
+		Integer operatir+(Integer const & rhs) const;	// same way sent hidden current 'this'
+														// nothing will be changed and new Integer
+														// will be returned 
+};
+
+std::ostream & operator<<(std::ostream & o, Integer const & rhs);
+```
+| integer.cpp
+```
+#include "integer.h"
+
+Integer::Integer(int const n) : _n(n)
+{
+	std::cout<<"Constructor called\n";
+}
+
+Integer::~Integer(void)
+{
+	std::cout<<"Destructor called\n";
+}
+
+Integer:int getValue(void) const
+{
+	return this->_n;
+}
+
+Integer::Integer & operator=(Integer const & rhs)
+{
+	this->_n = rhs.getValue();
+
+	return *this;
+}
+
+Integer::Integer operatir+(Integer const & rhs) const
+{
+	return Integer(this->_n + rhs.getValue());
+}
+
+std::ostream & operator<<(std::ostream & o, Integer const & rhs)
+{
+	o << rhs.getValue();
+
+	return o;
+}
+```
+
+Source: <a href="https://42.fr/en/homepage/">42</a>.
+
 ## <a id="Orthodox-Canonical-Class-Form">Orthodox Canonical Class Form</a>
 
 - <b>A default constructor:</b> used internally to initialize objects and data members when no other value is available.
