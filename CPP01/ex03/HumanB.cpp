@@ -42,7 +42,7 @@ void HumanB :: setWeapon(Weapon &weapon)
     this->_weapon = &weapon;
 }
 
-void HumanB :: attack()
+void HumanB :: attack(void) const
 {
     if (this->_weapon == NULL)
         std::cout << this->_name << " doesn't have any weapons\n";
