@@ -4,6 +4,8 @@
 1. [Ad-hoc polymorphism](#Ad-hoc-polymorphism)
 2. [Operator Overloading](#Operator-Overloading)
 3. [Orthodox Canonical Class Form](#Orthodox-Canonical-Class-Form)
+4. [Additional info](#Additional-info)
+
 
 ## <a id="Ad-hoc-polymorphism">Ad-hoc polymorphism</a>
 - Ad-hoc Polymorphism, also called as Overloading Ad-hoc Polymorphism allows functions having same name to act differently for different types. 
@@ -140,3 +142,30 @@ Source: <a href="https://42.fr/en/homepage/">42</a>.
 - <b>An assignment operator:</b> used to assign one value to another.
 - <b>A destructor:</b> Invoked when an object is deleted.
 
+## <a id="Additional-info">Additional info</a>
+
+### Bit shifting:
+- One use is division or multiplication by integer powers of 2.
+- A left shift of 'n' is the same as multiplying a value by 2^n, only much faster. Likewise a right shift is the same as dividing by 2^n.
+
+### Fixed point 
+- Converting from fixed-point to floating-point is straightforward. We take the input value and divide it by (2fractional_bits), putting the result into a double:
+```
+	inline double fixed_to_double(fixed_point_t input)
+	{
+		return ((double)input / (double)(1 << FIXED_POINT_FRACTIONAL_BITS));
+	}
+```
+- To convert from floating-point to fixed-point, we follow this algorithm:
+- 1. Calculate x = floating_input * 2^(fractional_bits)
+- 2. Round x to the nearest whole number (e.g. round(x))
+- 3. Store the rounded x in an integer container
+```
+	inline fixed_point_t double_to_fixed(double input)
+	{
+		return (fixed_point_t)(round(input * (1 << FIXED_POINT_FRACTIONAL_BITS)));
+	}
+```
+<a href = "https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/">Source</a>
+- The conversion from the integer format to the fixed point format is done by shifting 'n' positions to the left, so that the position of the binary point is correct.
+<a href="https://www.codeproject.com/Articles/37636/Fixed-Point-Class">Source<a>
