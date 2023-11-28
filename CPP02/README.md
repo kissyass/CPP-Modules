@@ -5,6 +5,7 @@
 2. [Operator Overloading](#Operator-Overloading)
 3. [Orthodox Canonical Class Form](#Orthodox-Canonical-Class-Form)
 4. [Additional info](#Additional-info)
+5. [Static](#Static)
 
 
 ## <a id="Ad-hoc-polymorphism">Ad-hoc polymorphism</a>
@@ -169,3 +170,12 @@ Source: <a href="https://42.fr/en/homepage/">42</a>.
 <a href = "https://embeddedartistry.com/blog/2018/07/12/simple-fixed-point-conversion-in-c/">Source</a>
 - The conversion from the integer format to the fixed point format is done by shifting 'n' positions to the left, so that the position of the binary point is correct.
 <a href="https://www.codeproject.com/Articles/37636/Fixed-Point-Class">Source<a>
+
+## <a id="Static">Static</a>
+- We can define class members static using static keyword. When we declare a member of a class as static it means no matter how many objects of the class are created, there is only one copy of the static member.
+- A static member is shared by all objects of the class. All static data is initialized to zero when the first object is created, if no other initialization is present. We can't put it in the class definition but it can be initialized outside the by redeclaring the static variable, using the scope resolution operator :: to identify which class it belongs to.
+
+### Static Function Members
+- By declaring a function member as static, you make it independent of any particular object of the class. A static member function can be called even if no objects of the class exist and the static functions are accessed using only the class name and the scope resolution operator ::.
+- A static member function can only access static data member, other static member functions and any other functions from outside the class.
+- Static member functions have a class scope and they do not have access to the this pointer of the class. You could use a static member function to determine whether some objects of the class have been created or not.
