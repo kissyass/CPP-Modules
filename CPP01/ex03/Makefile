@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-SRC = $(wildcard *.cpp)
+SRC = HumanA.cpp HumanB.cpp main.cpp Weapon.cpp
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f
