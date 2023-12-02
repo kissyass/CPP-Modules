@@ -1,36 +1,25 @@
-#include "Zombie.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 16:23:05 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/02 16:23:07 by ykissiko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(int argc, char **argv)
+#include "Zombie.hpp"
+
+int main()
 {
-    if (argc < 2)
-    {
-        std::cout << "enter command id and name: 1 - default, 2 - name zombie, 3 - horde: number of zombies and names\n";
-        return (0);
-    }
-    if (argv[1][0] == '1')
-    {
-        std::cout << "default zombie naming\n";
-        Zombie z1;
-        z1.announce();
-    }
-    else if (argv[1][0] == '2')
-    {
-        std::cout << "normal zombie naming\n";
-        Zombie z1(argv[2]);
-        z1.announce();
-    }
-    else if (argv[1][0] == '3')
-    {
-        Zombie *horde;
-        int num = atoi(argv[2]);
-        std::string name = "default zombie";
-        if (argv[3])
-            name = argv[3];
-        horde = zombieHorde(num, name);
-        for (int i = 0; i < num; i ++)
-            horde[i].announce();
-        delete [] horde;
-        std::cout << "The horde is deleted\n";
-    }
+    Zombie *horde = zombieHorde(10, "dodo");
+
+    for (int i = 0; i < 10; i++)
+        horde[i].announce();
+    
+    delete [] horde;
+
     return (0);
 }

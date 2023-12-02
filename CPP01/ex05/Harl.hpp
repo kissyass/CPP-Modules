@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 16:15:20 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 16:15:37 by ykissiko         ###   ########.fr       */
+/*   Created: 2023/12/02 17:02:19 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/02 17:02:21 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef HARL_HPP
+#define HARL_HPP
 
-Zombie :: Zombie(void)
-{
-    this->_name = "Defaulty";
-}
+#include <iostream>
 
-Zombie :: Zombie(std::string name) : _name(name)
+class Harl
 {
-}
+    private:
+        void debug(void);
+        void info(void);
+        void warning(void);
+        void error(void);
+    public:
+        Harl(void);
+        ~Harl(void);
+        void complain(std::string level);
+};
 
-Zombie :: ~Zombie(void)
-{
-    std::cout << this->_name << " is dead\n";
-}
+typedef void (Harl::*pointer_func)(void);
 
-void Zombie :: announce(void)
-{
-    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
-}
-
-void Zombie :: set_name(std::string name)
-{
-    this->_name = name;
-}
+#endif

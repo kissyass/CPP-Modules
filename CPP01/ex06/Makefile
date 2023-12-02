@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/12/02 16:26:03 by ykissiko          #+#    #+#              #
-#    Updated: 2023/12/02 16:26:04 by ykissiko         ###   ########.fr        #
+#    Created: 2023/12/02 17:02:27 by ykissiko          #+#    #+#              #
+#    Updated: 2023/12/02 17:02:29 by ykissiko         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ CC = c++
 RM = rm -f
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
-NAME = brain
+NAME = harlFilter
 
 all: $(NAME)
 

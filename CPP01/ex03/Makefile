@@ -1,4 +1,16 @@
-SRC = main.cpp Weapon.cpp HumanA.cpp HumanB.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/02 16:31:34 by ykissiko          #+#    #+#              #
+#    Updated: 2023/12/02 16:31:36 by ykissiko         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

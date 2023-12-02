@@ -1,4 +1,16 @@
-SRC = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/12/02 14:27:05 by ykissiko          #+#    #+#              #
+#    Updated: 2023/12/02 14:27:06 by ykissiko         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+SRC = $(wildcard *.cpp)
 OBJ = $(SRC:.cpp=.o)
 CC = c++
 RM = rm -f

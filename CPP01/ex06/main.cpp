@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/02 16:15:20 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 16:15:37 by ykissiko         ###   ########.fr       */
+/*   Created: 2023/12/02 17:12:53 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/02 17:12:54 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "Harl.hpp"
 
-Zombie :: Zombie(void)
+int main(int argc, char **argv)
 {
-    this->_name = "Defaulty";
-}
+    if (argc != 2)
+    {
+        std::cout << "Pass only 1 argument\n";
+        return (0);
+    }
+    
+    Harl harly;
 
-Zombie :: Zombie(std::string name) : _name(name)
-{
-}
+    harly.complain(argv[1]);
 
-Zombie :: ~Zombie(void)
-{
-    std::cout << this->_name << " is dead\n";
-}
-
-void Zombie :: announce(void)
-{
-    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
-}
-
-void Zombie :: set_name(std::string name)
-{
-    this->_name = name;
+    return(0);
 }

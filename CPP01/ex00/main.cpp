@@ -1,36 +1,29 @@
-#include "Zombie.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.cpp                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 14:39:18 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/02 14:39:20 by ykissiko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-int main(int argc, char **argv)
+#include "Zombie.hpp"
+
+int main()
 {
-    if (argc != 3)
-    {
-        std::cout << "enter command id and name: 1 - default, 2 - name zombie, 3 - new zombie, 4 - randomChump\n";
-        return (0);
-    }
-    if (argv[1][0] == '1')
-    {
-        std::cout << "default zombie naming\n";
-        Zombie z1;
-        z1.announce();
-    }
-    else if (argv[1][0] == '2')
-    {
-        std::cout << "normal zombie naming\n";
-        Zombie z1(argv[2]);
-        z1.announce();
-    }
-    else if (argv[1][0] == '3')
-    {
-        std::cout << "heap zombie naming\n";
-        Zombie *z1;
-        z1 = newZombie(argv[2]);
-        z1->announce();
-        delete(z1);
-    }
-    else if (argv[1][0] == '4')
-    {
-        std::cout << "random chump zombie naming\n";
-        randomChump(argv[2]);
-    }
+    Zombie z1;
+    Zombie z2("Second zombie");
+    Zombie *heap = newZombie("Heaped zombie");
+    randomChump("Chump zombie");
+
+    z1.announce();
+    z2.announce();
+    heap->announce();
+
+    delete heap;
+
     return (0);
 }
