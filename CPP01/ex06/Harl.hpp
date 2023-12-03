@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:02:19 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 17:02:21 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/03 19:47:41 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,5 @@ class Harl
         ~Harl(void);
         void complain(std::string level);
 };
-
-typedef void (Harl::*pointer_func)(void);
 
 #endif

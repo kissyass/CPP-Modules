@@ -1,66 +1,83 @@
-#include "Fixed.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 20:02:35 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/03 15:32:28 by ykissiko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Fixed :: Fixed()
+#include "Fixed.hpp"
+
+Fixed :: Fixed(void)
 {
-    std::cout << "Default constructor called\n";
-
-    this->_num = 0;
+    std::cout << "Default constructor called" << std::endl;
+    this->_number = 0;
 }
 
 Fixed :: Fixed(Fixed const &copy)
 {
-    std::cout << "Copy constructor called\n";
+    std::cout << "Copy constructor called" << std::endl;
 
-    this->_num = copy.getRawBits();
+    this->_number = copy.getRawBits();
 }
 
-Fixed :: Fixed(const int num) : _num(num << _bits)
+Fixed & Fixed :: operator=(Fixed const &rhs)
 {
-    std::cout << "Int constructor called\n";
-}
+    std::cout << "Copy assignment operator called" << std::endl;
 
-Fixed :: Fixed(const float num) : _num(std::roundf(num * (1 << _bits)))
-{
-    std::cout << "Float constructor called\n";
-}
-
-Fixed :: ~Fixed()
-{
-    std::cout << "Destructor called\n";
-}
-
-Fixed & Fixed::operator=(Fixed const &rhs)
-{
-    std::cout << "Copy assignment operator called\n";
-
-    this->_num = rhs.getRawBits();
+    this->_number = rhs.getRawBits();
 
     return *this;
 }
 
+Fixed :: ~Fixed()
+{
+    std::cout << "Destructor called" << std::endl;
+}
+
 int Fixed :: getRawBits(void) const
 {
-    // std::cout << "getRawBits member function called\n";
-    return this->_num;
+    // std::cout << "getRawBits member function called" << std::endl;
+
+    return this->_number;
 }
 
-void Fixed :: setRawBits(int const raw)
+void Fixed :: setRawbits(int const raw)
 {
-    this->_num = raw;
+    std::cout << "setRawBits member function called" << std::endl;
+    
+    this->_number = raw;
 }
 
-float Fixed :: toFloat( void ) const
+Fixed :: Fixed(const int num)
 {
-    return (float)this->_num / (1 << this->_bits);
+    this->_number = num << this->_bit;
+    std::cout << "Int constructor called" << std::endl;
 }
 
-int Fixed :: toInt( void ) const
+Fixed :: Fixed(const float num)
 {
-    return this->_num >> this->_bits;
+    this->_number = roundf(num * (1 << this->_bit));
+    std::cout << "Float constructor called" << std::endl;
 }
 
-std::ostream & operator<<( std::ostream &o, Fixed const &a ) 
+float Fixed :: toFloat(void) const
 {
-    o << a.toFloat();
-    return o;
+    return ((float)this->_number / (float)(1 << this->_bit));
+}
+
+int Fixed :: toInt(void) const
+{
+    return this->_number >> this->_bit;
+}
+
+std::ostream & operator<<(std::ostream &output, const Fixed &fixed)
+{
+    output << fixed.toFloat();
+   
+    return output;
 }

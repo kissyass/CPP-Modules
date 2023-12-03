@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Zombie.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 14:31:10 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 14:31:11 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/03 19:41:01 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#include "./Zombie.hpp"
 
 Zombie :: Zombie(void)
 {
@@ -23,10 +23,10 @@ Zombie :: Zombie(std::string name) : _name(name)
 
 Zombie :: ~Zombie(void)
 {
-    std::cout << this->_name << " is dead\n";
+    std::cout << this->_name << " is dead" << std::endl;
 }
 
 void Zombie :: announce(void)
 {
-    std::cout << this->_name << ": BraiiiiiiinnnzzzZ...\n";
+    std::cout << this->_name << ": BraiiiiiiinnnzzzZ..." << std::endl;
 }

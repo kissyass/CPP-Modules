@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ykissiko <ykissiko@student.42istanbul.com  +#+  +:+       +#+        */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 17:05:13 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 17:05:14 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/03 19:47:17 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Harl.hpp"
+#include "./Harl.hpp"
 
 Harl :: Harl(void)
 {

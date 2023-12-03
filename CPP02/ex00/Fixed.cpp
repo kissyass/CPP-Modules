@@ -1,40 +1,54 @@
-#include "Fixed.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 18:50:00 by ykissiko          #+#    #+#             */
+/*   Updated: 2023/12/02 20:00:58 by ykissiko         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-Fixed :: Fixed()
+#include "Fixed.hpp"
+
+Fixed :: Fixed(void)
 {
-    std::cout << "Default constructor called\n";
-
-    this->_num = 0;
+    std::cout << "Default constructor called" << std::endl;
+    this->_number = 0;
 }
 
 Fixed :: Fixed(Fixed const &copy)
 {
-    std::cout << "Copy constructor called\n";
+    std::cout << "Copy constructor called" << std::endl;
 
-    this->_num = copy.getRawBits();
+    this->_number = copy.getRawBits();
 }
 
-Fixed :: ~Fixed()
+Fixed & Fixed :: operator=(Fixed const &rhs)
 {
-    std::cout << "Destructor called\n";
-}
+    std::cout << "Copy assignment operator called" << std::endl;
 
-Fixed & Fixed::operator=(Fixed const &rhs)
-{
-    std::cout << "Copy assignment operator called\n";
-
-    this->_num = rhs.getRawBits();
+    this->_number = rhs.getRawBits();
 
     return *this;
 }
 
-int Fixed :: getRawBits(void) const
+Fixed :: ~Fixed()
 {
-    std::cout << "getRawBits member function called\n";
-    return this->_num;
+    std::cout << "Destructor called" << std::endl;
 }
 
-void Fixed :: setRawBits(int const raw)
+int Fixed :: getRawBits(void) const
 {
-    this->_num = raw;
+    std::cout << "getRawBits member function called" << std::endl;
+
+    return this->_number;
+}
+
+void Fixed :: setRawbits(int const raw)
+{
+    std::cout << "setRawBits member function called" << std::endl;
+    
+    this->_number = raw;
 }
