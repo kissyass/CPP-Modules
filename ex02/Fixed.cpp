@@ -6,11 +6,11 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/03 15:35:30 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/03 18:09:41 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:47:14 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "./Fixed.hpp"
 
 Fixed :: Fixed(void)
 {
@@ -137,6 +137,8 @@ Fixed Fixed :: operator/(Fixed const &rhs) const
 }
 
 /*===========================Increment/dectrement operators===========================*/
+
+
 Fixed & Fixed :: operator++()
 {
     this->_number++;
@@ -165,27 +167,28 @@ Fixed Fixed :: operator--(int)
 
 Fixed & Fixed :: min(Fixed &fix1, Fixed &fix2)
 {
-    if (fix1 < fix2)
+    if (fix1.getRawBits() < fix2.getRawBits())
         return fix1;
     return fix2;
 }
+
 const Fixed & Fixed :: min(Fixed const &fix1, Fixed const &fix2)
 {
-    if (fix1 < fix2)
+    if (fix1.getRawBits() < fix2.getRawBits())
         return fix1;
     return fix2;
 }
 
 Fixed & Fixed :: max(Fixed &fix1, Fixed &fix2)
 {
-    if (fix1 > fix2)
+    if (fix1.getRawBits() > fix2.getRawBits())
         return fix1;
     return fix2;
 }
 
 const Fixed & Fixed :: max(Fixed const &fix1, Fixed const &fix2)
 {
-    if (fix1 > fix2)
+    if (fix1.getRawBits() > fix2.getRawBits())
         return fix1;
     return fix2;
 }

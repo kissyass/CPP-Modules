@@ -6,11 +6,11 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 20:02:52 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/03 15:29:57 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:46:18 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "./Fixed.hpp"
 
 int main ()
 {

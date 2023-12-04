@@ -6,11 +6,11 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 18:50:00 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/02 20:00:58 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:42:40 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "./Fixed.hpp"
 
 Fixed :: Fixed(void)
 {
@@ -22,7 +22,7 @@ Fixed :: Fixed(Fixed const &copy)
 {
     std::cout << "Copy constructor called" << std::endl;
 
-    this->_number = copy.getRawBits();
+    *this = copy;
 }
 
 Fixed & Fixed :: operator=(Fixed const &rhs)

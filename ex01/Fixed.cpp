@@ -6,11 +6,11 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 20:02:35 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/03 15:32:28 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/04 15:46:15 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Fixed.hpp"
+#include "./Fixed.hpp"
 
 Fixed :: Fixed(void)
 {
