@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 18:29:49 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 19:36:13 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:24:38 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,14 @@ FragTrap & FragTrap :: operator=(FragTrap const &rhs)
 {
     std::cout << "Copy operator for FragTrap is called" << std::endl;
 
-    this->_name = rhs._name;
-    this->_hit_points = rhs._hit_points;
-    this->_energy_points = rhs._energy_points;
-    this->_attack_damage = rhs._attack_damage;
-    this->_max_hp = rhs._max_hp;
+    if (this != &rhs)
+    {
+        this->_name = rhs._name;
+        this->_hit_points = rhs._hit_points;
+        this->_energy_points = rhs._energy_points;
+        this->_attack_damage = rhs._attack_damage;
+        this->_max_hp = rhs._max_hp;
+    }
 
     return *this;
 }

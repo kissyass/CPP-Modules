@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:28:13 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 19:29:31 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:17:13 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ ClapTrap & ClapTrap :: operator=(ClapTrap const &rhs)
 {
     std::cout << "Copy operator for ClapTrap is called" << std::endl;
     
-    this->_name = rhs._name;
-    this->_hit_points = rhs._hit_points;
-    this->_energy_points = rhs._energy_points;
-    this->_attack_damage = rhs._attack_damage;
-    this->_max_hp = rhs._max_hp;
-    
+    if (this != &rhs)
+    {
+        this->_name = rhs._name;
+        this->_hit_points = rhs._hit_points;
+        this->_energy_points = rhs._energy_points;
+        this->_attack_damage = rhs._attack_damage;
+        this->_max_hp = rhs._max_hp;
+    }
     return *this;
 }
 
@@ -72,8 +74,9 @@ void ClapTrap :: takeDamage(unsigned int amount)
         ;
     else if (this->_hit_points <= amount)
     {
-        std::cout << this->_name << " from ClapTrap is dead now" << std::endl;
         this->_hit_points = 0;        
+        std::cout << this->_name << " from ClapTrap got attacked and lost " << amount << " hit points. Amount of hit points left: " << this->_hit_points << std::endl;
+        std::cout << this->_name << " from ClapTrap is dead now" << std::endl;
     }
     else
     {
@@ -97,6 +100,7 @@ void ClapTrap :: beRepaired(unsigned int amount)
         {
             this->_hit_points = this->_max_hp;
             std::cout << "Cannot add " << amount << " hit points, the max is reached. Amount of hit points after repair: " << this->_hit_points << std::endl;
+            this->_energy_points--; 
         }
         else
         {

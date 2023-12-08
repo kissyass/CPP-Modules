@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/06 16:40:24 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 19:31:35 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:18:35 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,12 +33,15 @@ ScavTrap & ScavTrap :: operator=(ScavTrap const &rhs)
 {
     std::cout << "Copy operator for ScavTrap is called" << std::endl;
 
-    this->_name = rhs._name;
-    this->_hit_points = rhs._hit_points;
-    this->_energy_points = rhs._energy_points;
-    this->_attack_damage = rhs._attack_damage;
-    this->_max_hp = rhs._max_hp;
-    
+    if (this != &rhs)
+    {
+        this->_name = rhs._name;
+        this->_hit_points = rhs._hit_points;
+        this->_energy_points = rhs._energy_points;
+        this->_attack_damage = rhs._attack_damage;
+        this->_max_hp = rhs._max_hp;
+    }
+
     return *this;
 }
 

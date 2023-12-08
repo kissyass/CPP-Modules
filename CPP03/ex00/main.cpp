@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:28:17 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 17:49:15 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:15:43 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,23 +19,32 @@ int main()
     ClapTrap tom;
 
     carry.attack("Tom");
+    carry.attack("Tom");
+    carry.attack("Tom");
+    carry.attack("Tom");
+    carry.attack("Tom");
+    carry.beRepaired(10);
+    carry.beRepaired(10);
+    carry.beRepaired(10);
+    carry.beRepaired(10);
+    carry.beRepaired(10);
+    carry.beRepaired(10);
+    carry.attack("Tom");
+    carry.attack("Tom");
+    carry.attack("Tom");
+    std::cout << "----------------------------------------------------------------------------" << std::endl;
     jim.attack("Carry");
-    carry.takeDamage(10);
-    carry.takeDamage(10);
-    tom.takeDamage(0);
-    carry.attack("Jim");
-    carry.beRepaired(10);
-    carry.attack("Jim");
-    carry.beRepaired(10);
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
-    carry.attack("Jim");
+    jim.takeDamage(10);
+    jim.takeDamage(10);
+    jim.attack("Carry");
+    jim.attack("Carry");
+    jim.beRepaired(10);
+    std::cout << "----------------------------------------------------------------------------" << std::endl;
+    tom.attack("Carry");
+    tom.attack("Carry");
+    tom.takeDamage(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
 
 
     return 0;

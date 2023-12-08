@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:28:17 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 19:32:59 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:23:15 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,41 @@ int main()
 {
     ClapTrap carry("Carry");
     ScavTrap tom("Tom");
+    ScavTrap jerry(tom);
 
     carry.attack("Tom");
-    tom.takeDamage(0);
-    tom.beRepaired(100);
     tom.attack("Jim");
-    carry.takeDamage(20);
-    carry.attack("Tom");
-    carry.beRepaired(100);
-    carry.attack("Tom");
-    carry.attack("Tom");
+    tom.attack("Jim");
+    tom.attack("Jim");
+    tom.attack("Jim");
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.takeDamage(10);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
+    tom.beRepaired(5);
     tom.guardGate();
+    std::cout << "----------------------------------------------------------------------------" << std::endl;
+    jerry.attack("Jim");
+    jerry.attack("Jim");
+    jerry.attack("Jim");
+    jerry.takeDamage(20);
+    jerry.takeDamage(20);
+    jerry.takeDamage(20);
+    jerry.attack("Tom");
+    jerry.beRepaired(100);
+    jerry.beRepaired(100);
+    jerry.takeDamage(20);
+    jerry.takeDamage(200);
+    jerry.attack("Tom");
 
     return 0;
 }

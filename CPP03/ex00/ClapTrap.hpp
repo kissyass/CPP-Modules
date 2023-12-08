@@ -6,7 +6,7 @@
 /*   By: ykissiko <ykissiko@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/04 16:28:15 by ykissiko          #+#    #+#             */
-/*   Updated: 2023/12/06 19:09:25 by ykissiko         ###   ########.fr       */
+/*   Updated: 2023/12/07 12:32:00 by ykissiko         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 
 class ClapTrap
 {
-    protected:
+    private:
         std::string _name;
         unsigned int _hit_points;
         unsigned int _energy_points;
