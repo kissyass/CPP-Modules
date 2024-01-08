@@ -28,6 +28,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
     if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
+
 std::string Bureaucrat :: getName(void) const
 {
     return this->_name;

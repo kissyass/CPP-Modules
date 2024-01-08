@@ -1,10 +1,10 @@
 #include "./Bureaucrat.hpp"
 
-Bureaucrat :: Bureaucrat(void) : _name("Default worker"), _grade(75)
+Bureaucrat::Bureaucrat(void) : _name("Default worker"), _grade(75)
 {
 }
 
-Bureaucrat :: Bureaucrat(Bureaucrat const &copy) : _name(copy._name)
+Bureaucrat::Bureaucrat(Bureaucrat const &copy) : _name(copy._name)
 {
     *this = copy;
 }
@@ -17,17 +17,18 @@ Bureaucrat & Bureaucrat :: operator=(Bureaucrat const &rhs)
     return *this;
 }
 
-Bureaucrat :: ~Bureaucrat(void)
+Bureaucrat::~Bureaucrat(void)
 {
 }
 
-Bureaucrat :: Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
+Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name), _grade(grade)
 {
     if (grade < 1)
         throw Bureaucrat::GradeTooHighException();
     if (grade > 150)
         throw Bureaucrat::GradeTooLowException();
 }
+
 std::string Bureaucrat :: getName(void) const
 {
     return this->_name;
@@ -57,10 +58,10 @@ std::ostream & operator<<(std::ostream &output, const Bureaucrat &worker)
     return output;
 }
 
-void Bureaucrat :: signForm(Form &form) const
+void Bureaucrat :: signForm(Form &form)
 {
-    if (form.getIsSigned() == true)
-        std::cout << this->_name <<  " couldn’t sign " << form.getName() << " because it is already signed" << std::endl;
+    if (form.getSignStatus() == true)
+        std::cout << this->_name << " couldn't sign " << form.getName() << " because it is already signed" << std::endl;
     else
     {
         try

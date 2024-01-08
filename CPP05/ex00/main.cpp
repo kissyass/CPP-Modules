@@ -17,7 +17,7 @@ int main()
     {
         std::cout << e.what() << std::endl;   
     }
-
+    std::cout << "-----------------------------------------------------------------------------" << std::endl;
     try 
     {
         Bureaucrat worker;
