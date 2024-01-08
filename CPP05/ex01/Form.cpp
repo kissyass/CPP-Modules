@@ -61,7 +61,7 @@ void Form :: beSigned(Bureaucrat const &worker)
 
 std::ostream & operator<<(std::ostream &output, const Form &form)
 {
-    output << "Form name: " << form.getName() << "; signing status: " << form.getSignStatus() << "; sign grade: " << form.getSignGrade() << "; execution grade: " << form.getExecGrade() << std::endl;
+    output << "Form name: " << form.getName() << "; signing status: " << form.getSignStatus() << "; sign grade: " << form.getSignGrade() << "; execution grade: " << form.getExecGrade();
 
     return output;
 }

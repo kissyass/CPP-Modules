@@ -4,7 +4,6 @@
 
 int main()
 {
-    try 
     {
         Bureaucrat bureaucrat("Ken", 1);
         Form form("Document", 15);
@@ -15,11 +14,9 @@ int main()
         bureaucrat.signForm(form);
         bureaucrat.signForm(form);
     } 
-    catch (Bureaucrat::GradeTooHighException &e) 
-    {
-        std::cout << e.what() << std::endl;   
-    }
+
     std::cout << "-----------------------------------------------------------------------------" << std::endl;
+    
     try 
     {
         Bureaucrat worker;
@@ -33,7 +30,7 @@ int main()
     } 
     catch (Bureaucrat::GradeTooLowException &e) 
     {
-        std::cout << e.what() << std::endl;   
+        std::cout << "Oh oh, problem occured: " << e.what() << std::endl;   
     }
     return EXIT_SUCCESS;
 }
