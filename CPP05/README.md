@@ -2,9 +2,7 @@
 # CPP Module 05
 
 1. [Exceptions](#Exceptions)
-2. [Virtual](#Virtual)
-3. [Virtual Member Functions](#Virtual-Member-Functions)
-4. [Pure Virtual Functions](#Pure-Virtual-Functions)
+2. [Inheriting exception class and what kw](#Inheriting-exception-class-and-what-kw)
 
 
 ## <a id="Exceptions">Exceptions</a>
@@ -15,7 +13,7 @@
 3. The <b>catch</b> statement allows you to define a block of code to be executed, if an error occurs in the try block.
 - The try and catch keywords come in pairs
 
-## Inheriting exception class and what kw
+## <a id="Inheriting-exception-class-and-what-kw">Inheriting exception class and what kw</a>
     class GradeTooHighException : public std::exception {
         public:
             virtual const char* what() const throw() { return "Grade is too high"; }
