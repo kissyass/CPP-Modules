@@ -1,9 +1,8 @@
 #include "./ScalarConverter.hpp"
 
-char ScalarConverter :: c = 0;
-int ScalarConverter :: i = 0;
-float ScalarConverter :: f = 0;
-double ScalarConverter :: d = 0;
+char ScalarConverter::c = 0;
+int ScalarConverter::i = 0;
+double ScalarConverter::d = 0.0;
 
 ScalarConverter::ScalarConverter(void)
 {}
@@ -70,16 +69,21 @@ int ScalarConverter :: checkNan(std::string str)
     }
 }
 
-void updateAndPrint(void)
+void ScalarConverter :: updateAndPrint(void)
 {
-    c = static_cast<char>(i);
-    f = static_cast<float>(i);
+    if (i < 32 || i > 126)
+        std::cout << "char: non displayable" << std::endl;
+    else
+    {
+        c = static_cast<char>(i);
+        std::cout << "char: " << c << std::endl;
+    }
+
     d = static_cast<double>(i);
     
-    std::cout << "char: " << c <<std::endl;
-    std::cout << "int: " << i <<std::endl;
-    std::cout << "float: " << f <<std::endl;
-    std::cout << "double: " << d <<std::endl;
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << d << "f" << std::endl; //to print float numbers with fixed number after .
+    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
 }
 
 int ScalarConverter :: checkCharDigit(std::string str)
@@ -100,11 +104,73 @@ int ScalarConverter :: checkCharDigit(std::string str)
     return 1;
 }
 
+int ScalarConverter :: checkDouble(std::string str)
+{
+    d = std::stod(str);
+
+    i = static_cast<int>(d);
+
+    std::cout << "char: non displayable" << std::endl;
+    std::cout << "int: " << i << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(1) << d << "f" << std::endl; //to print float numbers with fixed number after .
+    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+    return 1;
+}
+
+int ScalarConverter :: checkNum(std::string str)
+{
+    long int a;
+    unsigned int j;
+    int zero;
+
+    j = 0;
+    zero = 0;
+    if (str[j] == '-' || str[j] == '+')
+        j++;
+    while (str[j] && isdigit(str[j]))
+        j++;
+    if (j != str.length() && str[j] != '.')
+        throw InvalidInputException();
+
+    if (str[j] == '.')
+        j++;
+    while (str[j] && isdigit(str[j]))
+    {
+        if (str[j] != '0')
+            zero = 1;
+        j++;
+    }
+    if (j != str.length() && !(str[j] == 'f' && j + 1 == str.length()))
+        throw InvalidInputException();
+    
+    a = atol(str.c_str()); // Convert the std::string to a C-style string using c_str()
+    if (a > INT_MAX || a < INT_MIN)
+    {
+        printVals("impossible", "impossible", "beyond conversion", "beyond conversion");
+        return 1;
+    }
+
+    if (str.find('.') != std::string::npos && zero == 1)
+        checkDouble(str);
+    else
+    {
+        i = a;
+        updateAndPrint();
+    }
+    return 1;
+}
+
 void ScalarConverter :: convert(std::string str)
 {
     if (checkNan(str))
         return ;
     if (checkCharDigit(str))
         return ;
-    
+    if (checkNum(str))
+        return ;
+}
+
+const char * ScalarConverter::InvalidInputException::what() const throw()
+{
+    return ("Invalid input");
 }

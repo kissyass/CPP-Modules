@@ -2,6 +2,9 @@
 #define SCALARCONVERTER_HPP
 
 #include <iostream>
+#include <iomanip> // for std::fixed ; std::setprecision(1)
+#include <cstdlib>
+#include <limits>
 
 class ScalarConverter
 {
@@ -13,16 +16,14 @@ class ScalarConverter
 
         static char c;
         static int i;
-        static float f;
         static double d;
 
         static int checkNan(std::string str);
-        void printVals(std::string cs, std::string is, std::string fs, std::string ds);
-        int checkCharDigit(std::string str);
-        void updateAndPrint(void);
-        
-
-
+        static void printVals(std::string cs, std::string is, std::string fs, std::string ds);
+        static int checkCharDigit(std::string str);
+        static void updateAndPrint(void);
+        static int checkNum(std::string);
+        static int checkDouble(std::string str);  
     public:
         static void convert(std::string str);
         class InvalidInputException;
