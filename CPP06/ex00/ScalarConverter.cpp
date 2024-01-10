@@ -112,8 +112,8 @@ int ScalarConverter :: checkDouble(std::string str)
 
     std::cout << "char: non displayable" << std::endl;
     std::cout << "int: " << i << std::endl;
-    std::cout << "float: " << std::fixed << std::setprecision(1) << d << "f" << std::endl; //to print float numbers with fixed number after .
-    std::cout << "double: " << std::fixed << std::setprecision(1) << d << std::endl;
+    std::cout << "float: " << std::fixed << std::setprecision(2) << d << "f" << std::endl; //to print float numbers with fixed number after .
+    std::cout << "double: " << std::fixed << std::setprecision(2) << d << std::endl;
     return 1;
 }
 
@@ -140,7 +140,7 @@ int ScalarConverter :: checkNum(std::string str)
             zero = 1;
         j++;
     }
-    if (j != str.length() && !(str[j] == 'f' && j + 1 == str.length()))
+    if (j != str.length() && !(str[j] == 'f' && j + 1 == str.length() && str[j - 1] && str[j - 1] != '.'))
         throw InvalidInputException();
     
     a = atol(str.c_str()); // Convert the std::string to a C-style string using c_str()
