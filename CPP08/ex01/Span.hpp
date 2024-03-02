@@ -10,8 +10,6 @@ class Span
         unsigned int size;
         std::vector<int> vec;
         Span(void);
-        // template<typename T>;
-        typedef std::vector<int>::iterator T;
     public:
         Span(unsigned int size);
         Span(const Span &copy);
@@ -20,23 +18,23 @@ class Span
         void addNumber(int n);
         int shortestSpan(void);
         int longestSpan(void);
+        void addNumbers(std::vector<int>::iterator begin, std::vector<int>::iterator end);
+        void print_span(void);
         class NotEnoughElementsException : public std::exception 
         {
             public:
-            char const* what() const throw();
+                char const* what() const throw();
         };
         class SpanIsFullException : public std::exception 
         {
             public:
-            char const* what() const throw();
+                char const* what() const throw();
         };
-        void addNumbers(T begin, T end);
         class TooBigArrayException : public std::exception 
         {
             public:
-            char const* what() const throw();
+                char const* what() const throw();
         };
-        void print_span(void);
 };
 
 #endif

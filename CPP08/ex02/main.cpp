@@ -1,42 +1,68 @@
-#include <iostream>
-#include <stack>
+#include "MutantStack.hpp"
 
-template<typename T>
-class MutantStack : public std::stack<T> {
-public:
-    typedef typename std::stack<T>::container_type::iterator iterator;
-    typedef typename std::stack<T>::container_type::const_iterator const_iterator;
-
-    iterator begin() { return std::stack<T>::c.begin(); }
-    iterator end() { return std::stack<T>::c.end(); }
-
-    const_iterator begin() const { return std::stack<T>::c.begin(); }
-    const_iterator end() const { return std::stack<T>::c.end(); }
-};
-
-int main() {
+int main()
+{
+    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "MutantStack: " << std::endl;
     MutantStack<int> mstack;
+
     mstack.push(5);
     mstack.push(17);
-    std::cout << mstack.top() << std::endl;
+
+    std::cout << "Top: " << mstack.top() << std::endl;
+
     mstack.pop();
-    std::cout << mstack.size() << std::endl;
+
+    std::cout << "Size : " << mstack.size() << std::endl;
+
     mstack.push(3);
     mstack.push(5);
     mstack.push(737);
-    //[...]
     mstack.push(0);
 
     MutantStack<int>::iterator it = mstack.begin();
     MutantStack<int>::iterator ite = mstack.end();
+
     ++it;
     --it;
-    while (it != ite) {
+    std::cout << "Iteration started: " << std::endl;
+    while (it != ite)
+    {
         std::cout << *it << std::endl;
         ++it;
     }
 
-    std::stack<int> s(mstack);
+    std::cout << "-------------------------------------------" << std::endl;
+    std::cout << "List:" << std::endl;
+
+    std::list<int> mylist;
+
+    mylist.push_back(5);
+    mylist.push_back(17);
+
+    std::cout << "Top: " << mylist.back() << std::endl;
+
+    mylist.pop_back();
+
+    std::cout << "Size : " << mylist.size() << std::endl;
+
+    mylist.push_back(3);
+    mylist.push_back(5);
+    mylist.push_back(737);
+    mylist.push_back(0);
+
+    std::list<int>::iterator itl = mylist.begin();
+    std::list<int>::iterator itel = mylist.end();
+
+    ++itl;
+    --itl;
+
+    std::cout << "Iteration started: " << std::endl;
+    while (itl != itel) 
+    {
+        std::cout << *itl << std::endl;
+        ++itl;
+    }
 
     return 0;
 }
