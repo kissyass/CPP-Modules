@@ -10,15 +10,24 @@
 class BitcoinExchange 
 {
     private:
-        std::map<std::tm, std::float> data;
+        std::map<int, float> data;
     public:
         BitcoinExchange();
-        BitcoinExchange(const BitcoinExchange &copy)
+        BitcoinExchange(const BitcoinExchange &copy);
         BitcoinExchange &operator=(const BitcoinExchange &rhs);
         ~BitcoinExchange();
 
+        BitcoinExchange(std::string fileName);
+
+        int DateToInt(std::string str);
+        bool checkYear(int year);
+        bool checkMonth(int month);
+        bool checkDay(int day, int date);
+        float findRate(int date);
+        void eraseSpace(std::string & str);
+
         class FileDoesNotOpenException;
-}
+};
 
 class BitcoinExchange::FileDoesNotOpenException : public std::exception
 {
