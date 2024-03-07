@@ -3,11 +3,12 @@
 // PmergeMe :: PmergeMe();
 // PmergeMe :: PmergeMe(const PmergeMe &copy);
 // PmergeMe & PmergeMe :: operator=(const PmergeMe &rhs);
-// PmergeMe :: ~PmergeMe();
+PmergeMe :: ~PmergeMe()
+{}
 
 PmergeMe :: PmergeMe(int argc, char **input)
 {
-    for (size_t i = 1; i < argc; i++)
+    for (int i = 1; i < argc; i++)
     {
         if (!checkInt(std::string(input[i])))
         {
@@ -16,14 +17,43 @@ PmergeMe :: PmergeMe(int argc, char **input)
         }
     }
 
-    for (size_t i = 1; i < argc; i++)
+    for (int i = 1; i < argc; i++)
     {
         if (!fillContainers(std::string(input[i])))
             return ;
     }
+
+    std::cout << "Before (vector): ";
+    for (size_t i = 0; i < this->vcont.size(); i++)
+        std::cout << this->vcont[i] << " ";
     
+    std::cout << std::endl << "Before (list): ";
+    for (std::list<int>::iterator it = this->lcont.begin(); it != this->lcont.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+    
+    std::clock_t	clockBegin = clock();
+    this->insertSortMergeVector(0, this->vcont.size(), 5);
+    std::clock_t	clockEnd = clock();
+    this->vectorTime = double(clockEnd - clockBegin) / CLOCKS_PER_SEC;
 
+    clockBegin = clock();
+    std::cout << "before insertSortMergeList: " << this->lcont.size() << ", " << *this->lcont.begin() << ", " << *this->lcont.end() << std::endl;
+    this->insertSortMergeList(this->lcont.begin(), this->lcont.end(), 5);
+    clockEnd = clock();
+    this->listTime = double(clockEnd - clockBegin) / CLOCKS_PER_SEC;
 
+    std::cout << "After (vector): ";
+    for (size_t i = 0; i < this->vcont.size(); i++)
+        std::cout << this->vcont[i] << " ";
+
+    std::cout << std::endl << "After (list): ";
+    for (std::list<int>::iterator it = this->lcont.begin(); it != this->lcont.end(); it++)
+        std::cout << *it << " ";
+    std::cout << std::endl;
+
+    std::cout << "Time to process a range of " << argc - 1 << " elements with vector: " << this->vectorTime << " us." << std::endl;
+    std::cout << "Time to process a range of " << argc - 1 << " elements with list: " << this->listTime << " us." << std::endl;
 }
 
 bool PmergeMe :: checkInt(std::string str)
@@ -62,10 +92,157 @@ bool PmergeMe :: fillContainers(std::string str)
     
 }
 
-void PmergeMe :: insertSort()
+
+void PmergeMe :: insertSortMergeVector(int begin, int end, int threshold)
 {
+    if (end > begin && threshold > 0)
+    {
+        if (end - begin <= threshold) //a threshold value determines when to switch from using the merge sort algorithm to using the insertion sort algorithm for sorting smaller subarrays
+            insertSortVector(begin, end);
+        else
+        {
+            int mid = begin + (end - begin) / 2;
+            this->insertSortMergeVector(begin, mid, threshold);
+            this->insertSortMergeVector(mid, end, threshold);
+            this->sortMergeVector(begin, mid, end);
+        }
+    }
+    else
+        std::cerr << "Error: wrong index input" << std::endl;
 
 }
 
+void PmergeMe :: insertSortVector(int begin, int end)
+{
+    for (int i = begin + 1; i < end; i++)
+    {
+        int num = this->vcont[i];
+        int j = i - 1;
+        while (j >= begin && this->vcont[j] > num)
+        {
+            this->vcont[j + 1] = this->vcont[j];
+            j--;
+        }
+        this->vcont[j + 1] = num;
+    }
+}
 
-// void PmergeMe :: sortMerge();
+void PmergeMe :: sortMergeVector(int begin, int mid, int end)
+{
+    std::vector<int> v1, v2;
+
+    for (int i = begin; i < mid; i++)
+        v1.push_back(this->vcont[i]);
+    for (int i = mid; i < end; i++)
+        v2.push_back(this->vcont[i]);
+
+    size_t i = 0, j = 0, k = begin;
+
+    while (i < v1.size() && j < v2.size())
+    {
+        if (v1[i] <= v2[j])
+        {
+            this->vcont[k] = v1[i];
+            i++;
+        }
+        else
+        {
+            this->vcont[k] = v2[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < v1.size())
+    {
+        this->vcont[k] = v1[i];
+        i++;
+        k++;
+    }
+
+    while (j < v2.size())
+    {
+        this->vcont[k] = v2[j];
+        j++;
+        k++;
+    }
+}
+
+void PmergeMe :: insertSortMergeList(std::list<int>::iterator begin, std::list<int>::iterator end, int threshold)
+{
+    std::cout << "insertSortMergeList: " << std::endl;
+    if (std::distance(begin, end) > 0 && threshold > 0)
+    {
+        if (std::distance(begin, end) <= threshold)
+        {
+            std::cout << "before insertSortList: " << *begin << " and " << *end << std::endl;
+            insertSortList(begin, end);
+        }
+        else
+        {
+            std::cout << "else" << std::endl;
+
+            std::list<int>::iterator mid = std::next(begin, std::distance(begin, end) / 2);
+            insertSortMergeList(begin, mid, threshold);
+            insertSortMergeList(mid, end, threshold);
+            sortMergeList(begin, mid, end);
+        }
+    }
+    else
+        std::cerr << "Error: wrong index input" << std::endl;
+  
+    std::cout << "insertSortMergeList done" << std::endl;
+
+}
+
+void PmergeMe :: insertSortList(std::list<int>::iterator begin, std::list<int>::iterator end)
+{
+    std::cout << "insertSortList" << std::endl;
+    // std::cout << "yes: " << std::endl;
+    // std::cout << *std::next(begin, 1) << " " << *end;
+
+    std::list<int>::iterator it = begin;
+    std::cout << *it << std::endl;
+    it++;
+    std::cout << *it << std::endl;
+    std::cout << *end << std::endl;
+    for (; it != end; it++)
+    {
+        std::cout << "yes: " << *it << " " << *end;
+        int num = *it;
+        std::list<int>::iterator j = it;
+        while (j != begin && *std::prev(j) > num)
+        {
+            *j = *std::prev(j);
+            it--;
+        }
+        *j = num;
+    }
+}
+
+void PmergeMe :: sortMergeList(std::list<int>::iterator begin, std::list<int>::iterator mid, std::list<int>::iterator end)
+{
+    std::list<int> tmp;
+
+    std::list<int>::iterator it1 = begin;
+    std::list<int>::iterator it2 = mid;
+
+    while (it1 != mid && it2 != end)
+    {
+        if (*it1 <= *it2)
+        {
+            tmp.push_back(*it1);
+            it1++;
+        }
+        else
+        {
+            tmp.push_back(*it2);
+            it2++;
+        }
+    }
+
+    tmp.insert(tmp.end(), it1, mid);
+    tmp.insert(tmp.end(), it2, end);
+
+    std::copy(tmp.begin(), tmp.end(), begin);
+}
