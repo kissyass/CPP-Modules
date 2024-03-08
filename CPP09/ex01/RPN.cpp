@@ -35,20 +35,20 @@ void RPN :: readInput(std::string str)
         {
             if (!makeOperation(str[i]))
             {
-                std::cerr << "Error" << std::endl;
+                std::cout << "Error" << std::endl;
                 return ;
             }
         }
         else
         {
-            std::cerr << "Error" << std::endl;
+            std::cout << "Error" << std::endl;
             return ;
         }
     }
 
     if (this->st.size() != 1)
     {
-        std::cerr << "Error" << std::endl;
+        std::cout << "Error" << std::endl;
         return ;
     }
 

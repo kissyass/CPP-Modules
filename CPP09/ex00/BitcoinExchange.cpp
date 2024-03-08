@@ -1,68 +1,34 @@
 #include "BitcoinExchange.hpp"
 
 BitcoinExchange :: BitcoinExchange()
+{}
+
+BitcoinExchange :: BitcoinExchange(const BitcoinExchange &copy)
 {
-    std::ifstream file("data.csv");
-    if (!file.is_open())
-    {
-        std::cerr << "Error: could not open file." << std::endl;
-        return ;
-    }
-
-    std::string line;
-    std::getline(file, line);
-    
-    while(std::getline(file, line))
-    {
-        std::stringstream ss(line);
-        std::string dateStr;
-        float rate;
-        char delimiter;
-
-        if (std::getline(ss, dateStr, ',') && ss >> rate && ss >> delimiter) 
-        {
-            this->data[this->DateToInt(dateStr)] = rate;
-        }
-        else
-            std::cout << "EXCEPTION WITH INPUT" << std::endl;
-    }
-
-    file.close();
+    *this = copy;
 }
+
+BitcoinExchange & BitcoinExchange :: operator=(const BitcoinExchange &rhs)
+{
+    if (this != &rhs)
+        this->data = rhs.data;
+
+    return (*this);
+}
+
+BitcoinExchange :: ~BitcoinExchange()
+{}
 
 BitcoinExchange :: BitcoinExchange(std::string fileName)
 {
-    std::ifstream file("data.csv");
-    if (!file.is_open())
-    {
-        std::cerr << "Error: could not open file." << std::endl;
+    if (!this->openCSV())
         return ;
-    }
 
     std::string line;
-    std::getline(file, line);
-    
-    while(std::getline(file, line))
-    {
-        std::stringstream ss(line);
-        std::string dateStr;
-        float rate;
-        // char delimiter;
-
-        if (std::getline(ss, dateStr, ',') && ss >> rate) 
-        {
-            this->data[this->DateToInt(dateStr)] = rate;
-        }
-        else
-            std::cout << "EXCEPTION WITH INPUT CSV" << std::endl;
-    }
-
-    file.close();
-
     std::ifstream fileInput(fileName);
     if (!fileInput.is_open())
     {
-        std::cerr << "Error: could not open file." << std::endl;
+        std::cout << "Error: could not open file." << std::endl;
         return ;
     }
 
@@ -77,20 +43,61 @@ BitcoinExchange :: BitcoinExchange(std::string fileName)
 
         size_t pos = line.find(" | ");
         dateStr = line.substr(0, pos);
-        value = std::stof(line.substr(pos + 3)); // can throw an excepton handle it
-        date = this->DateToInt(dateStr);
-        if (date == 0)
-            std::cout << "Error: bad input => " << dateStr << std::endl;
-        else if (value < 0)
-            std::cout << "Error: not a positive number." << std::endl;
-        else if (value > 1000)
-            std::cout << "Error: too large a number." << std::endl;
-        else
-            std::cout << dateStr << " => " << value << " = " << this->findRate(date) * value << std::endl;
+        try
+        {
+            value = std::stof(line.substr(pos + 3));
+            date = this->DateToInt(dateStr);
+            if (date == 0)
+                std::cout << "Error: bad input => " << dateStr << std::endl;
+            else if (value < 0)
+                std::cout << "Error: not a positive number." << std::endl;
+            else if (value > 1000)
+                std::cout << "Error: too large a number." << std::endl;
+            else
+                std::cout << dateStr << " => " << value << " = " << this->findRate(date) * value << std::endl;
+        }
+        catch(const std::exception& e)
+        {
+            std::cout << "Error: bad input => " << line.substr(pos + 3) << std::endl;
+        }
     }
 
-    fileInput.close();
+    fileInput.close(); 
 }
+
+bool BitcoinExchange :: openCSV()
+{
+    std::ifstream file("data.csv");
+    if (!file.is_open())
+    {
+        std::cout << "Error: could not open file." << std::endl;
+        return false;
+    }
+
+    std::string line;
+    std::getline(file, line);
+    
+    while (std::getline(file, line))
+    {
+        std::stringstream ss(line);
+        std::string dateStr;
+        float rate;
+
+        if (std::getline(ss, dateStr, ',') && ss >> rate)
+        {
+            this->data[this->DateToInt(dateStr)] = rate;
+        }
+        else
+        {
+            std::cout << "Error: couldn't process file" << std::endl;
+            return false;
+        }
+    }
+    file.close();
+
+    return true;
+}
+
 
 void BitcoinExchange :: eraseSpace(std::string & str)
 {
@@ -153,10 +160,7 @@ int BitcoinExchange :: DateToInt(std::string str)
     int check;
 
     if (str.size() != 10)
-    {
-        std::cout << "exception with date format, wrong size " << str.size() << std::endl;
         return 0;
-    }
 
     size_t index = str.find('-');
     if (index != 4)
@@ -185,19 +189,3 @@ int BitcoinExchange :: DateToInt(std::string str)
     
     return (date);
 }
-
-BitcoinExchange :: BitcoinExchange(const BitcoinExchange &copy)
-{
-    *this = copy;
-}
-
-BitcoinExchange & BitcoinExchange :: operator=(const BitcoinExchange &rhs)
-{
-    this->data = rhs.data;
-
-    return *this;
-}
-
-BitcoinExchange :: ~BitcoinExchange()
-{}
-

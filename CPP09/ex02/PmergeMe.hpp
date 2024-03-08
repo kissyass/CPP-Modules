@@ -4,18 +4,22 @@
 #include <iostream>
 #include <algorithm>
 #include <list>
+#include <iterator>
 #include <vector>
+#include <iomanip>
 
 class PmergeMe{
     private:
-        int listTime;
-        int vectorTime;
+        double listTime;
+        double vectorTime;
         std::list<int> lcont;
         std::vector<int> vcont;
-    public:
+
         PmergeMe();
         PmergeMe(const PmergeMe &copy);
         PmergeMe &operator=(const PmergeMe &rhs);
+    public:
+
         ~PmergeMe();
 
         PmergeMe(int argc, char **input);

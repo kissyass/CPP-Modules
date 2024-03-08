@@ -1,8 +1,28 @@
 #include "PmergeMe.hpp"
 
-// PmergeMe :: PmergeMe();
-// PmergeMe :: PmergeMe(const PmergeMe &copy);
-// PmergeMe & PmergeMe :: operator=(const PmergeMe &rhs);
+PmergeMe :: PmergeMe()
+{}
+
+PmergeMe :: PmergeMe(const PmergeMe &copy)
+{
+    *this = copy;
+}
+
+PmergeMe & PmergeMe :: operator=(const PmergeMe &rhs)
+{
+    if (this != &rhs)
+    {
+        this->lcont.clear();
+        this->vcont.clear();
+        this->lcont = rhs.lcont;
+        this->vcont = rhs.vcont;
+        this->listTime = rhs.listTime;
+        this->vectorTime = rhs.vectorTime;
+    }
+
+    return *this;
+}
+
 PmergeMe :: ~PmergeMe()
 {}
 
@@ -12,7 +32,7 @@ PmergeMe :: PmergeMe(int argc, char **input)
     {
         if (!checkInt(std::string(input[i])))
         {
-            std::cerr << "Error" << std::endl;
+            std::cout << "Error" << std::endl;
             return ;
         }
     }
@@ -23,13 +43,9 @@ PmergeMe :: PmergeMe(int argc, char **input)
             return ;
     }
 
-    std::cout << "Before (vector): ";
+    std::cout << "Before: ";
     for (size_t i = 0; i < this->vcont.size(); i++)
         std::cout << this->vcont[i] << " ";
-    
-    std::cout << std::endl << "Before (list): ";
-    for (std::list<int>::iterator it = this->lcont.begin(); it != this->lcont.end(); it++)
-        std::cout << *it << " ";
     std::cout << std::endl;
     
     std::clock_t	clockBegin = clock();
@@ -38,22 +54,17 @@ PmergeMe :: PmergeMe(int argc, char **input)
     this->vectorTime = double(clockEnd - clockBegin) / CLOCKS_PER_SEC;
 
     clockBegin = clock();
-    std::cout << "before insertSortMergeList: " << this->lcont.size() << ", " << *this->lcont.begin() << ", " << *this->lcont.end() << std::endl;
     this->insertSortMergeList(this->lcont.begin(), this->lcont.end(), 5);
     clockEnd = clock();
     this->listTime = double(clockEnd - clockBegin) / CLOCKS_PER_SEC;
 
-    std::cout << "After (vector): ";
+    std::cout << "After:";
     for (size_t i = 0; i < this->vcont.size(); i++)
         std::cout << this->vcont[i] << " ";
-
-    std::cout << std::endl << "After (list): ";
-    for (std::list<int>::iterator it = this->lcont.begin(); it != this->lcont.end(); it++)
-        std::cout << *it << " ";
     std::cout << std::endl;
 
-    std::cout << "Time to process a range of " << argc - 1 << " elements with vector: " << this->vectorTime << " us." << std::endl;
-    std::cout << "Time to process a range of " << argc - 1 << " elements with list: " << this->listTime << " us." << std::endl;
+    std::cout << "Time to process a range of " << argc - 1 << " elements with vector: " << std:: fixed << std::setprecision(6) << this->vectorTime << " us." << std::endl;
+    std::cout << "Time to process a range of " << argc - 1 << " elements with list: " << std:: fixed << std::setprecision(6) << this->listTime << " us." << std::endl;
 }
 
 bool PmergeMe :: checkInt(std::string str)
@@ -61,10 +72,7 @@ bool PmergeMe :: checkInt(std::string str)
     for (size_t i = 0 ; i < str.length(); i++)
     {
         if (!std::isdigit(str[i]))
-        {
-            std::cerr << "Error" << std::endl;
             return false;
-        }
     }
 
     return true;
@@ -82,7 +90,7 @@ bool PmergeMe :: fillContainers(std::string str)
     }
     catch(const std::out_of_range& e)
     {
-        std::cerr << "Error: " << e.what() << std::endl;
+        std::cout << "Error: " << e.what() << std::endl;
         this->lcont.clear();
         this->vcont.clear();
         return false;
@@ -108,7 +116,7 @@ void PmergeMe :: insertSortMergeVector(int begin, int end, int threshold)
         }
     }
     else
-        std::cerr << "Error: wrong index input" << std::endl;
+        std::cout << "Error: wrong index input" << std::endl;
 
 }
 
@@ -170,18 +178,12 @@ void PmergeMe :: sortMergeVector(int begin, int mid, int end)
 
 void PmergeMe :: insertSortMergeList(std::list<int>::iterator begin, std::list<int>::iterator end, int threshold)
 {
-    std::cout << "insertSortMergeList: " << std::endl;
     if (std::distance(begin, end) > 0 && threshold > 0)
     {
         if (std::distance(begin, end) <= threshold)
-        {
-            std::cout << "before insertSortList: " << *begin << " and " << *end << std::endl;
             insertSortList(begin, end);
-        }
         else
         {
-            std::cout << "else" << std::endl;
-
             std::list<int>::iterator mid = std::next(begin, std::distance(begin, end) / 2);
             insertSortMergeList(begin, mid, threshold);
             insertSortMergeList(mid, end, threshold);
@@ -189,34 +191,22 @@ void PmergeMe :: insertSortMergeList(std::list<int>::iterator begin, std::list<i
         }
     }
     else
-        std::cerr << "Error: wrong index input" << std::endl;
-  
-    std::cout << "insertSortMergeList done" << std::endl;
-
+        std::cout << "Error: wrong index input" << std::endl;
 }
 
 void PmergeMe :: insertSortList(std::list<int>::iterator begin, std::list<int>::iterator end)
 {
-    std::cout << "insertSortList" << std::endl;
-    // std::cout << "yes: " << std::endl;
-    // std::cout << *std::next(begin, 1) << " " << *end;
-
-    std::list<int>::iterator it = begin;
-    std::cout << *it << std::endl;
-    it++;
-    std::cout << *it << std::endl;
-    std::cout << *end << std::endl;
-    for (; it != end; it++)
+    for (std::list<int>::iterator it = std::next(begin); it != end; it++)
     {
-        std::cout << "yes: " << *it << " " << *end;
         int num = *it;
-        std::list<int>::iterator j = it;
-        while (j != begin && *std::prev(j) > num)
+        std::list<int>::iterator jt = it;
+        while (jt != begin && *std::prev(jt) > num)
         {
-            *j = *std::prev(j);
-            it--;
+            *jt = *std::prev(jt);
+            jt--;
         }
-        *j = num;
+
+        *jt = num;
     }
 }
 

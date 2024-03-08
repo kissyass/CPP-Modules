@@ -6,18 +6,21 @@
 #include <fstream>
 #include <sstream>
 #include <string>
+#include <stdexcept>
 
 class BitcoinExchange 
 {
     private:
         std::map<int, float> data;
-    public:
         BitcoinExchange();
         BitcoinExchange(const BitcoinExchange &copy);
         BitcoinExchange &operator=(const BitcoinExchange &rhs);
+    public:
         ~BitcoinExchange();
 
         BitcoinExchange(std::string fileName);
+
+        bool openCSV();
 
         int DateToInt(std::string str);
         bool checkYear(int year);
